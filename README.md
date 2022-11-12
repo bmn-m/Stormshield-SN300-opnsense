@@ -1,6 +1,8 @@
 # Stormshield-SN300
 Stormshield SN300 OPNSense 
 
+![IMG_3546](https://user-images.githubusercontent.com/18091782/201496340-d1e2a905-c35f-41c7-b21e-8972f7859640.JPG)
+
 A nice colleague of mine gave me a Stormshield SN300 a few days ago. 
 Since I am a big OPNSense fan, I wanted to install the same on the Stormshield. 
 Here and in some YouTube videos, I summarize briefly what was necessary and whether it was worth it. 
