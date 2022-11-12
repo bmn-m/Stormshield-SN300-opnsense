@@ -16,7 +16,7 @@ Without further ado, I broke the warranty seal to take a look at the device from
 
 Hidden behind the silver cooling fins on the left, the VIA NANO U3500 @ 1000MHz (1 core, 1 thread) CPU. Behind the black cooling fins in the center of the picture, probably the GPU. Behind the black fins on the right, the switch controller and just above it the gigabit ethernet controller that connects the board to the switch. Above, in beautiful green, the RAM with 2GB and below left in blue: The gigantic 2GB flash memory. 
 2GB are unfortunately too small for the smallest OPNSense image. It needs at least 3GB.
-No less important and probably therefore with two green ok stickers, the AMI BIOS from 2010 in version 02.69. Nice. 
+No less important and probably therefore with two green ok stickers, the AMI BIOS from 2014 in version 02.69. Nice. 
 
 # 1st-Boot
 The first thing I did when booting was to press delete to get into the BIOS. Quiet and quick boot switched off, date and time set, saved and rebooted. Short POST image, then nothing. Should not bother us further, we want to "install" OPNSense anyway.  
