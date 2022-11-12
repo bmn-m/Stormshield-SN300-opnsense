@@ -45,8 +45,7 @@ After the POST messages OPNSense booted like any other hardware. We are welcomed
 ## Networking
 Opnsense does not detect an active network interface after booting, even though I have plugged a network cable into one of the eight switch ports. Unfortunately, there is also no LED that shows a link. Only one interface and no link, for a firewall rather bad. But this should not stop us in our mission. 
 As we have seen on the mainboard, there seems to be a switch chipset. You usually connect to a switch with a serial console, at least for the initial configuration.
-As we have seen on the mainboard, there seems to be a switch chipset. You usually connect to a switch with a serial console, at least for the initial configuration.
-on https://docs.freebsd.org/en/books/handbook/serialcomms/ you can find out: Call-out ports are named /dev/cuauN on FreeBSD. it also says that here are at least two utilities in the base-system of FreeBSD that can be used to work through a serial connection: cu and tip. we will use cu.
+On https://docs.freebsd.org/en/books/handbook/serialcomms/ you can find out: Call-out ports are named /dev/cuauN on FreeBSD. it also says that here are at least two utilities in the base-system of FreeBSD that can be used to work through a serial connection: cu and tip. we will use cu.
 
 ```cu -l /dev/cuau1 -s 19200```
 
