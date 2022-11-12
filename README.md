@@ -54,7 +54,7 @@ What the switch can do, i have put here for you
 https://github.com/bmn-m/Stormshield-SN300/blob/main/SwitchMenu
 We skip all the configuration options and display the switchports.
 
-```>port state```
+```port state```
 shows 
 ```
 Port  State     
@@ -71,5 +71,25 @@ Port  State
 ```
 As you probably already guessed correctly, the switchports should be enabled.
 
-```>port state 1-9 enable```
+```port state 1-9 enable```
 does the trick.
+
+With 
+
+```port mode```
+we can see
+```
+Port  Mode         Link  
+----  -----------  ----  
+1     Auto         1Gfdx
+2     Auto         Down
+3     Auto         Down
+4     Auto         Down
+5     Auto         Down
+6     Auto         Down
+7     Auto         Down
+8     Auto         Down
+9     1Gfdx        1Gfdx
+```
+that probably port one is plugged into the switch and port nine is connected to our internal ethernet controller
+
