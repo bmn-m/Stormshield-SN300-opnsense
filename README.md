@@ -42,7 +42,7 @@ Because it was still lying around with me: I upgraded the RAM to 4GB.
 ## 2nd-Boot
 After the POST messages OPNSense booted like any other hardware. We are welcomed by the FreeBSD and can log in with the known credentials root and opnsense. That was easy.
 
-## Networking
+## Switching
 Opnsense does not detect an active network interface after booting, even though I have plugged a network cable into one of the eight switch ports. Unfortunately, there is also no LED that shows a link. Only one interface and no link, for a firewall rather bad. But this should not stop us in our mission. 
 As we have seen on the mainboard, there seems to be a switch chipset. You usually connect to a switch with a serial console, at least for the initial configuration.
 On https://docs.freebsd.org/en/books/handbook/serialcomms/ you can find out: Call-out ports are named /dev/cuauN on FreeBSD. it also says that here are at least two utilities in the base-system of FreeBSD that can be used to work through a serial connection: cu and tip. We will use cu.
@@ -91,5 +91,42 @@ Port  Mode         Link
 8     Auto         Down
 9     1Gfdx        1Gfdx
 ```
-that probably port one is plugged into the switch and port nine is connected to our internal ethernet controller
+that probably port one is plugged into the switch and port nine is connected to our internal ethernet controller.
+Since we want to use all ports with opnsense we have to resort to VLANs. 
+With 
 
+```vlan conf```
+we can see
+```
+VLAN Configuration:
+===================
+
+
+Port  PVID  Frame Type  Ingress Filter  Tx Tag      Port Type      
+----  ----  ----------  --------------  ----------  -------------  
+1     1     All         Disabled        Untag PVID  Unaware        
+2     2     All         Disabled        Untag PVID  Unaware        
+3     3     All         Disabled        Untag PVID  Unaware        
+4     4     All         Disabled        Untag PVID  Unaware        
+5     5     All         Disabled        Untag PVID  Unaware        
+6     6     All         Disabled        Untag PVID  Unaware        
+7     7     All         Disabled        Untag PVID  Unaware        
+8     8     All         Disabled        Untag PVID  Unaware        
+9     None  Tagged      Disabled        Untag PVID  C-Port         
+
+VID   VLAN Name                         Ports
+----  --------------------------------  -----
+1     default                           1,9
+2                                       2,9
+3                                       3,9
+4                                       4,9
+5                                       5,9
+6                                       6,9
+7                                       7,9
+8                                       8,9
+
+VID   VLAN Name                         Ports
+----  --------------------------------  -----
+VLAN forbidden table is empty
+```
+that each port is already assigned an untagged VLAN except for port nine. Our internal port is a VLAN trunk. Perfect, on the switch we are done for now.  
