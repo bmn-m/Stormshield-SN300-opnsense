@@ -1,5 +1,6 @@
 Stormshield SN300 Internal Switch Configurations capability
 
+```ruby
 General Commands:
 -----------------
 Help/?: Get help on a group or a specific command
@@ -442,3 +443,4 @@ Debug VLAN PortType [<port_list>] mstp [unaware|c-port|s-port|s-custom-port]
 Debug VLAN pvid [<port_list>] mstp [<vid>]
 Debug VLAN tx_tag [<port_list>] mstp [tag_this|untag_this|tag_all|untag_all] [<vid>]
 Debug Wait <integer>
+```
