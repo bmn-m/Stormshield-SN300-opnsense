@@ -1,0 +1,444 @@
+Stormshield SN300 Internal Switch Configurations capability
+
+General Commands:
+-----------------
+Help/?: Get help on a group or a specific command
+Up    : Move one command level up
+Logout: Exit CLI
+
+Command Groups:
+---------------
+System      : System settings and reset options
+IP          : IP configuration and Ping
+Port        : Port management
+MAC         : MAC address table
+VLAN        : Virtual LAN
+PVLAN       : Private VLAN
+Security    : Security management
+STP         : Spanning Tree Protocol
+Aggr        : Link Aggregation
+LACP        : Link Aggregation Control Protocol
+LLDP        : Link Layer Discovery Protocol
+EEE         : Energy Efficient Ethernet
+QoS         : Quality of Service
+Mirror      : Port mirroring
+Config      : Load/Save of configuration via TFTP
+Firmware    : Download of firmware via TFTP
+Loop Protect: Loop Protection
+IPMC        : MLD/IGMP Snooping
+Debug       : Switch debug facilities
+
+Type '<group>' to enter command group, e.g. 'port'.
+Type '<group> ?' to get list of group commands, e.g. 'port ?'.
+Type '<command> ?' to get help on a command, e.g. 'port mode ?'.
+Commands may be abbreviated, e.g. 'por co' instead of 'port configuration'.
+
+System
+System Configuration [all | (port <port_list>)]
+System Log Configuration
+System Version
+System Log Server Mode [enable|disable]
+System Name [<name>]
+System Contact [<contact>]
+System Log Server Address [<ip_addr_string>]
+System Location [<location>]
+System Log Level [info|warning|error]
+System Timezone [<offset>]
+System Log Lookup [<log_id>] [all|info|warning|error]
+System Log Clear [all|info|warning|error]
+System Reboot
+System Restore Default [keep_ip]
+System Load
+
+IP
+IP Configuration
+IP DHCP [enable|disable]
+IP Setup [<ip_addr>] [<ip_mask>] [<ip_router>] [<vid>]
+IP Ping <ip_addr_string> [(Length <ping_length>)] [(Count <ping_count>)] [(Interval <ping_interval>)]
+IP SNTP [<ip_addr_string>]
+
+Port
+Port Configuration [<port_list>] [up|down]
+Port Mode [<port_list>] [auto|10hdx|10fdx|100hdx|100fdx|1000fdx]
+Port Flow Control [<port_list>] [enable|disable]
+Port State [<port_list>] [enable|disable]
+Port MaxFrame [<port_list>] [<max_frame>]
+Port Power [<port_list>] [enable|disable|actiphy|dynamic]
+Port Excessive [<port_list>] [discard|restart]
+Port Statistics [<port_list>] [<command>] [up|down]
+Port VeriPHY [<port_list>]
+
+MAC
+MAC Configuration [<port_list>]
+MAC Add <mac_addr> <port_list> [<vid>]
+MAC Delete <mac_addr> [<vid>]
+MAC Lookup <mac_addr> [<vid>]
+MAC Agetime [<age_time>]
+MAC Learning [<port_list>] [auto|disable|secure]
+MAC Dump [<mac_max>] [<mac_addr>] [<vid>]
+MAC Statistics [<port_list>]
+MAC Flush
+
+VLAN
+VLAN Configuration [<port_list>]
+VLAN PVID [<port_list>] [<vid>|none]
+VLAN FrameType [<port_list>] [all|tagged|untagged]
+VLAN IngressFilter [<port_list>] [enable|disable]
+VLAN tx_tag [<port_list>] [untag_pvid|untag_all|tag_all]
+VLAN PortType [<port_list>] [unaware|c-port|s-port|s-custom-port]
+VLAN EtypeCustomSport [<etype>]
+VLAN Add <vid>|<name> [<ports_list>]
+VLAN Forbidden Add <vid>|<name> [<port_list>]
+VLAN Delete <vid>|<name>
+VLAN Forbidden Delete <vid>|<name>
+VLAN Forbidden Lookup [<vid>] [(name <name>)] 
+VLAN Lookup [<vid>] [(name <name>)] [combined|static|all]
+VLAN Name Add <name> <vid>
+VLAN Name Delete <name>
+VLAN Name Lookup [<name>]
+VLAN Status [<port_list>] [combined|static|mstp|all|conflicts]
+
+PVLAN
+PVLAN Configuration [<port_list>]
+PVLAN Add <pvlan_id> [<port_list>]
+PVLAN Delete <pvlan_id>
+PVLAN Lookup [<pvlan_id>]
+PVLAN Isolate [<port_list>] [enable|disable]
+
+Security
+Command Groups:
+---------------
+Switch    : Switch security
+Network   : Network security
+AAA       : Authentication, Authorization and Accounting
+
+Security/Switch
+Command Groups:
+---------------
+Security Switch Password : System password
+Security Switch Access   : Access management
+Security Switch SNMP     : Simple Network Management Protocol
+
+Security/Switch/Access
+Security Switch Access Configuration
+Security Switch Access Mode [enable|disable]
+Security Switch Access Add <access_id> <start_ip_addr> <end_ip_addr> [web] [snmp]
+Security Switch Access Delete <access_id>
+Security Switch Access Lookup [<access_id>]
+Security Switch Access Clear
+Security Switch Access Statistics [clear]
+Security Switch SNMP Configuration
+Security Switch SNMP Mode [enable|disable]
+Security Switch SNMP Version [1|2c|3]
+Security Switch SNMP Read Community [<community>]
+Security Switch SNMP Write Community [<community>]
+Security Switch SNMP Trap Mode [enable|disable]
+Security Switch SNMP Trap Version [1|2c|3]
+Security Switch SNMP Trap Community [<community>]
+Security Switch SNMP Trap Destination [<ip_addr_string>]
+Security Switch SNMP Trap Authentication Failure [enable|disable]
+Security Switch SNMP Trap Link-up [enable|disable]
+Security Switch SNMP Trap Inform Mode [enable|disable]
+Security Switch SNMP Trap Inform Timeout [<timeout>]
+Security Switch SNMP Trap Inform Retry Times [<retries>]
+Security Switch SNMP Trap Probe Security Engine ID [enable|disable]
+Security Switch SNMP Trap Security Engine ID [<engineid>]
+Security Switch SNMP Trap Security Name [<security_name>]
+Security Switch SNMP Engine ID [<engineid>]
+Security Switch SNMP Community Add <community> [<ip_addr>] [<ip_mask>]
+Security Switch SNMP Community Delete <index>
+Security Switch SNMP Community Lookup [<index>]
+Security Switch SNMP User Add <engineid> <user_name> [MD5|SHA]
+        [<auth_password>] [DES] [<priv_password>]
+Security Switch SNMP User Delete <index>
+Security Switch SNMP User Changekey <engineid> <user_name>
+        <auth_password> [<priv_password>]
+Security Switch SNMP User Lookup [<index>]
+Security Switch SNMP Group Add <security_model> <security_name> <group_name>
+Security Switch SNMP Group Delete <index>
+Security Switch SNMP Group Lookup [<index>]
+Security Switch SNMP View Add <view_name> [included|excluded] <oid_subtree>
+Security Switch SNMP View Delete <index>
+Security Switch SNMP View Lookup [<index>]
+Security Switch SNMP Access Add <group_name> <security_model> <security_level>
+        [<read_view_name>] [<write_view_name>]
+Security Switch SNMP Access Delete <index>
+Security Switch SNMP Access Lookup [<index>]
+
+Security/Network/ACL
+Security Network ACL Configuration [<port_list>]
+Security Network ACL Action [<port_list>] [permit|deny] [<rate_limiter>]
+        [<port_redirect>] [<mirror>] [<logging>] [<shutdown>]
+Security Network ACL Policy [<port_list>] [<policy>]
+Security Network ACL Rate [<rate_limiter_list>] [<rate_unit>] [<rate>]
+Security Network ACL Add [<ace_id>] [<ace_id_next>]
+        [(port <port_list>)] [(policy <policy> <policy_bitmask>)]
+        [<tagged>] [<vid>] [<tag_prio>] [<dmac_type>]
+        [(etype [<etype>] [<smac>] [<dmac>]) |
+         (arp  [<sip>] [<dip>] [<smac>] [<arp_opcode>] [<arp_flags>]) |
+         (ip   [<sip>] [<dip>] [<protocol>] [<ip_flags>]) |
+         (icmp [<sip>] [<dip>] [<icmp_type>] [<icmp_code>] [<ip_flags>]) |
+         (udp  [<sip>] [<dip>] [<sport>] [<dport>] [<ip_flags>]) |
+         (tcp  [<sip>] [<dip>] [<sport>] [<dport>] [<ip_flags>] [<tcp_flags>])]
+        [permit|deny] [<rate_limiter>] [<port_redirect>] [<mirror>] [<logging>] [<shutdown>]
+Security Network ACL Delete <ace_id>
+Security Network ACL Lookup [<ace_id>]
+Security Network ACL Clear
+Security Network ACL Status [combined|static|loop_protect|ipmc|conflicts]
+Security Network ACL Port State [<port_list>] [enable|disable]
+
+STP
+STP Configuration
+STP Version [<stp_version>]
+STP Txhold [<holdcount>]
+STP MaxHops [<maxhops>]
+STP MaxAge [<max_age>]
+STP FwdDelay [<delay>]
+STP bpduFilter [enable|disable]
+STP bpduGuard [enable|disable]
+STP recovery [<timeout>]
+STP Status [<port_list>]
+STP Bridge Priority [<priority>]
+STP Port Configuration [<port_list>]
+STP Port Mode [<port_list>] [enable|disable]
+STP Port Edge [<port_list>] [enable|disable]
+STP Port AutoEdge [<port_list>] [enable|disable]
+STP Port P2P [<port_list>] [enable|disable|auto]
+STP Port RestrictedRole [<port_list>] [enable|disable]
+STP Port RestrictedTcn [<port_list>] [enable|disable]
+STP Port bpduGuard [<port_list>] [enable|disable]
+STP Port Statistics [<port_list>] [clear]
+STP Port Mcheck [<port_list>]
+STP Port Cost [<port_list>] [<path_cost>]
+STP Port Priority [<port_list>] [<priority>]
+
+Aggr
+Aggr Configuration
+Aggr Add <port_list> [<aggr_id>]
+Aggr Delete <aggr_id>
+Aggr Lookup [<aggr_id>]
+Aggr Mode [smac|dmac|ip|port] [enable|disable]
+
+LACP
+LACP Configuration [<port_list>]
+LACP Mode [<port_list>] [enable|disable]
+LACP Key [<port_list>] [<key>]
+LACP Role [<port_list>] [active|passive]
+LACP Status [<port_list>]
+LACP Statistics [<port_list>] [clear]
+
+LLDP
+LLDP Configuration [<port_list>]
+LLDP Mode [<port_list>] [enable|disable|rx|tx]
+LLDP Optional_TLV [<port_list>] [port_descr|sys_name|sys_descr|sys_capa|mgmt_addr] [enable|disable]
+LLDP Interval [<interval>]
+LLDP Hold [<hold>]
+LLDP Delay [<delay>]
+LLDP Reinit [<reinit>]
+LLDP Statistics [<port_list>] [clear]
+LLDP Info [<port_list>]
+
+EEE
+EEE Configuration [<port_list>]
+EEE Mode [<port_list>] [enable|disable]
+EEE Urgent_queues [<port_list>] [<queue_list>]
+
+QoS
+QoS Configuration [<port_list>]
+QoS Port Classification Class [<port_list>] [<class>]
+QoS Port Classification DPL [<port_list>] [<dpl>]
+QoS Port Classification PCP [<port_list>] [<pcp>]
+QoS Port Classification DEI [<port_list>] [<dei>]
+QoS Port Policer Mode [<port_list>] [enable|disable]
+QoS Port Policer Rate [<port_list>] [<rate>]
+QoS Port Policer Unit [<port_list>] [kbps|fps]
+QoS Port Policer FlowControl [<port_list>] [enable|disable]
+QoS Port Scheduler Mode [<port_list>] [strict|weighted]
+QoS Port Scheduler Weight [<port_list>] [<queue_list>] [<weight>]
+QoS Port Shaper Mode [<port_list>] [enable|disable]
+QoS Port Shaper Rate [<port_list>] [<bit_rate>]
+QoS Port QueueShaper Mode [<port_list>] [<queue_list>] [enable|disable]
+QoS Port QueueShaper Rate [<port_list>] [<queue_list>] [<bit_rate>]
+QoS Port QueueShaper Excess [<port_list>] [<queue_list>] [enable|disable]
+QoS Storm Unicast [enable|disable] [<packet_rate>]
+QoS Storm Multicast [enable|disable] [<packet_rate>]
+QoS Storm Broadcast [enable|disable] [<packet_rate>]
+QoS QCL Add [<qce_id>] [<qce_id_next>]
+    [<port_list>]
+    [<tag>] [<vid>] [<pcp>] [<dei>] [<smac>] [<dmac_type>]
+    [(etype [<etype>]) |
+    (LLC  [<DSAP>] [<SSAP>] [<control>]) |
+    (SNAP  [<PID>]) |
+    (ipv4  [<protocol>] [<sip>] [<dscp>] [<fragment>] [<sport>] [<dport>]) |
+    (ipv6  [<protocol>] [<sip_v6>] [<dscp>] [<sport>] [<dport>])] 
+    [<class>] [<dp>] [<classified_dscp>]
+QoS QCL Delete <qce_id>
+QoS QCL Lookup [<qce_id>]
+QoS QCL status [combined|static|conflicts]
+QoS QCL refresh
+
+Mirror
+Mirror Configuration [<port_list>]
+Mirror Port [<port>|disable]
+Mirror Mode [<port_cpu_list>] [enable|disable|rx|tx]
+
+Config>
+Config Save <ip_server> <file_name>
+Config Load <ip_server> <file_name> [check]
+
+Firmware>
+Firmware Load <ip_addr_string> <file_name>
+Firmware Information
+Firmware Swap
+
+Loop
+Loop Protect Configuration
+Loop Protect Mode [enable|disable]
+Loop Protect Transmit [<transmit-time>]
+Loop Protect Shutdown [<shutdown-time>]
+Loop Protect Port Configuration [<port_list>]
+Loop Protect Port Mode [<port_list>] [enable|disable]
+Loop Protect Port Action [<port_list>] [shutdown|shut_log|log]
+Loop Protect Port Transmit [<port_list>] [enable|disable]
+Loop Protect Status [<port_list>]
+
+IPMC
+IPMC Configuration [igmp]
+IPMC Mode [igmp] [enable|disable]
+IPMC Flooding [igmp] [enable|disable]
+IPMC State [igmp] [<vid>] [enable|disable]
+IPMC Querier [igmp] [<vid>] [enable|disable]
+IPMC Fastleave [igmp] [<port_list>] [enable|disable]
+IPMC Router [igmp] [<port_list>] [enable|disable]
+IPMC Status [igmp] [<vid>]
+IPMC Groups [igmp] [<vid>]
+IPMC Version [igmp] [<vid>]
+
+Debug
+Debug Syslog Server Address [<ip_addr_string>] [<udp_port>]
+Debug ACL Add [<ace_id>] [<ace_id_next>]
+        [(port <port_list>)] [(policy <policy> <policy_bitmask>)]
+        [<tagged>] [<vid>] [<tag_prio>] [<dmac_type>]
+        [(ipv6_std [<next_header>] [<sip_v6>] [<ipv6_flags>]) |
+         (ipv6_icmp [<icmp_type>] [<icmp_code>] [<ipv6_flags>]) |
+         (ipv6_udp [<sport>] [<dport>] [<ipv6_flags>]) |
+         (ipv6_tcp [<sport>] [<dport>] [<ipv6_flags>] [<tcp_flags>])]
+        [permit|deny] [<rate_limiter>] [<port_redirect>] [<mirror>] [<logging>] [<shutdown>]
+Debug Syslog Test [info|warning|error] [ram|flash]
+Debug Syslog Show [all|debug|system|application] [all|info|warning|error]
+Debug Syslog Erase
+Debug Port SFP [<port_list>]
+Debug ACL Lookup [static|loop_protect|ipmc] <ace_id>
+Debug ACL Delete [static|ipmc] <ace_id>
+Debug API [<layer>] [<group>] [<port_list>] [full]
+Debug Assert
+Debug Board [<mac_addr>] [<board_id>] [<board_type>]
+Debug Chip [<chip_no>]
+Debug Configuration Blocks [clear]
+Debug Configuration Flash [enable|disable]
+Debug Configuration Stack [enable|disable]
+Debug Critd List [<module>] [detailed]
+Debug Critd MaxLock [<module>] [clear]
+Debug EEE PHY [<port_list>] [raw]
+Debug EEE Rev_mode [mode_rev_a|mode_rev_b]
+Debug EEE Status [<port_list>]
+Debug EEE Wakeup_time [<port_list>] [rx|tx] [<wakeup_time>]
+Debug Firmware Bootloader <ip_addr> <file_name>
+Debug Firmware CheckSame [enable|disable]
+Debug Firmware Load <flash_name> <ip_addr> <file_name>
+Debug Firmware Pause [<integer>]
+Debug Frame Tx <port_list> [<packet_length>] [<dmac>] [<smac>] [<vid>] [<etype>]
+Debug Frame TxCnt [<tx_cnt>]
+Debug Heap
+Debug I2C_Read <i2c_addr> <i2c_bytes>
+Debug I2C_Scan_rd
+Debug I2C_Write <i2c_addr> <i2c_data> [<i2c_data>] [<i2c_data>] [<i2c_data>] [<i2c_data>] [<i2c_data>] [<i2c_data>] 
+Debug Init <integer> [<integer>] [<integer>]
+Debug Interrupt_Source_Hook <int_source> [enable|disable]
+Debug IP kmem
+Debug IP Log [<value>]
+Debug IP sockets
+Debug IPMC Add <vid> <sip> <dip> <port_list> [ipv6]
+Debug IPMC Delete <vid> <sip> <dip> [ipv6]
+Debug IPMC Memory
+Debug IPMC PKT [igmp] <vid> <ipmc_pkt_type> <port_list> <ipmc_pkt_cnt> [group_addr]
+Debug IPMC SFM [igmp] [<vid>] [<port_list>]
+Debug IPv6 Setup
+debug irq [clear]
+Debug lacp
+Debug Led Usid [<sid>]
+Debug MAC del <mac_addr> <integer> [<vid>]
+Debug MAC dump [<mac_max>] [<mac_addr>] [<vid>]
+Debug MAC eat <mac_addr> <port_list> <integer> [<vid>]
+Debug MAC voladd <mac_addr> <port_list> [<vid>]
+Debug MAC voldel <mac_addr>
+Debug MAC voleat <mac_addr> <port_list> <integer> [<vid>]
+Debug Memory Dump <addr> [<item_cnt>] [<item_size>]
+Debug Memory Fill <addr> <fill_val> [<item_cnt>] [<item_size>]
+Debug Msg [<integer>] [<integer>] [<integer>]
+          [<integer>] [<integer>] [<integer>]
+Debug Net
+Debug Packet Statistics [<integer>] [<integer>] [<integer>]
+                        [<integer>] [<integer>] [<integer>]
+Debug Packet Throttle [<xtr_qu>] [<max_frms_per_sec>]
+Debug PHY Clock Config <port> <clock> [serdes|copper|tclk|xtal|disable] [25m|125m|3125m] [<squelch>]
+Debug PHY i2c_rd <port_list> <i2c_mux> <i2c_device_addr> <i2c_reg_addr>
+Debug PHY i2c_wr <port_list> <i2c_mux> <i2c_device_addr> <i2c_reg_addr> <i2c_data>
+Debug PHY Loopback [<port_list>] [far|near] [enable|disable]
+Debug PHY MMD_Read <port_list> <devad> <mmd_reg_addr> [binary|decimal]
+Debug PHY MMD_Write <port_list> <devad> <mmd_reg_addr> <value>
+Debug PHY Read <port_list> <addr_list> [<page>] [binary|decimal]
+Debug PHY Write <port_list> <addr_list> <value> [<page>]
+Debug Port Advertise [<port_list>] [10hdx|10fdx|100hdx|100fdx|1000fdx] [enable|disable]
+Debug Port Capabilities [<port_list>] [up|down]
+Debug Port Change [<port_list>] [up|down] [clear]
+Debug Port Configuration [<port_list>] [up|down]
+Debug Port Info
+Debug Port npi <port> <cpu_qmask> [enable|disable]
+Debug Port Registrations [clear]
+Debug Port Statistics [<port_list>] [<command>] [up|down]
+Debug Port Tags [<port_list>] [none|one|two] [up|down]
+Debug Prio [<thread_id>] [<thread_prio>]
+Debug Prompt <prompt>
+Debug Register Read <tgt_list> <addr_list> [binary|decimal]
+Debug Register Write <tgt_list> <addr_list> <value>
+Debug Resume
+Debug SFP_rd <i2c_addr> <i2c_bytes> <sfp_reg_addr> [<sfp_reg_addr>] 
+Debug SFP_rd_phy [<port_list>] [<i2c_addr>]
+Debug STP Port <integer>
+Debug STP PState <integer>
+Debug Suspend
+Debug Sym Read <reg_syntax> [binary|decimal]
+Debug Sym Write <reg_syntax> <value>
+Debug Syslog RAM [<log_id>] [all|info|warning|error]
+Debug System Reboot [cold|cool]
+Debug Thread [backtrace] [enable|disable]
+Debug Time [<date_time>]
+Debug Trace Configuration [write|read|erase]
+Debug Trace Global Level [none|error|warning|info|debug|noise|racket]
+Debug Trace Module Level [<trace_module>] [<trace_group>] [none|error|warning|info|debug|noise|racket]
+Debug Trace Module Port_trace [<port_list>] [enable|disable]
+Debug Trace Module RingBuffer [<trace_module>] [<trace_group>] [enable|disable|yes|no]
+Debug Trace Module Timestamp [<trace_module>] [<trace_group>] [enable|disable|yes|no]
+Debug Trace Module Usec [<trace_module>] [<trace_group>] [enable|disable|yes|no]
+Debug Trace Reverse
+Debug Trace RingBuffer Flush
+Debug Trace RingBuffer Print
+Debug Trace RingBuffer Start
+Debug Trace RingBuffer Stop
+Debug Trace Thread Level [<thread_id>] [none|error|warning|info|debug|noise|racket]
+Debug Trace Thread Stackuse [<thread_id>] [enable|disable|yes|no]
+Debug VLAN Add <vid> [<ports_list>] [static]
+Debug VLAN Conf [<port_list>]
+Debug VLAN Delete <vid> [static]
+Debug VLAN Empty
+Debug VLAN Etype
+Debug VLAN Fillup <vid>
+Debug VLAN FrameType [<port_list>] mstp [all|tagged|untagged]
+Debug VLAN IngressFilter [<port_list>] mstp [enable|disable]
+Debug VLAN Lookup
+Debug VLAN port_del [<port_list>] mstp
+Debug VLAN PortType [<port_list>] mstp [unaware|c-port|s-port|s-custom-port]
+Debug VLAN pvid [<port_list>] mstp [<vid>]
+Debug VLAN tx_tag [<port_list>] mstp [tag_this|untag_this|tag_all|untag_all] [<vid>]
+Debug Wait <integer>
