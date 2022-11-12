@@ -24,8 +24,8 @@ The first thing I did when booting was to press delete to get into the BIOS. Qui
 ## OPNSense Image
 Because the 2GB flash is not big enough, I bought a 128GB 2.5 inch SATA3 SSD for a measly 15€.
 As soon as the SSD was delivered, I downloaded the nano image from https://opnsense.org/download/ and unpacked it with 
-  bzip2 -dk OPNsense-22.7-OpenSSL-nano-amd64.img.bz2.
+```bzip2 -dk OPNsense-22.7-OpenSSL-nano-amd64.img.bz2```
 Why the nano image? Because we don't have to go through an installation routine and can simply write the image with 
-  dd if=OPNsense-22.7-OpenSSL-nano-amd64.img of=/dev/sda
+```dd if=OPNsense-22.7-OpenSSL-nano-amd64.img of=/dev/sda```
 to the new SSD.
 What does nano mean: a preinstalled serial image for USB sticks, SD or CF cards as MBR boot. These images are 3G in size and automatically adapt to the installed media size after first boot.
