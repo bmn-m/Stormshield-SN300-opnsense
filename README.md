@@ -21,3 +21,11 @@ No less important and probably therefore with two green ok stickers, the AMI BIO
 The first thing I did when booting was to press delete to get into the BIOS. Quiet and quick boot switched off, date and time set, saved and rebooted. Short POST image, then nothing. Should not bother us further, we want to "install" OPNSense anyway.  
 ![POSTImage](https://user-images.githubusercontent.com/18091782/201491974-6cc32e92-4ff2-418d-95e9-075b5f0ee60a.png)
 
+# OPNSense Image
+Because the 2GB flash is not big enough, I bought a 128GB 2.5 inch SATA3 SSD for a measly 15€.
+As soon as the SSD was delivered, I downloaded the nano image from https://opnsense.org/download/ and unpacked it with 
+'''bzip2 -dk OPNsense-22.7-OpenSSL-nano-amd64.img.bz2.'''
+Why the nano image? Because we don't have to go through an installation routine and can simply write the image with 
+'''dd if=OPNsense-22.7-OpenSSL-nano-amd64.img of=/dev/sda'''
+to the new SSD.
+What does nano mean: a preinstalled serial image for USB sticks, SD or CF cards as MBR boot. These images are 3G in size and automatically adapt to the installed media size after first boot.
