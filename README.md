@@ -45,8 +45,31 @@ After the POST messages OPNSense booted like any other hardware. We are welcomed
 ## Networking
 Opnsense does not detect an active network interface after booting, even though I have plugged a network cable into one of the eight switch ports. Unfortunately, there is also no LED that shows a link. Only one interface and no link, for a firewall rather bad. But this should not stop us in our mission. 
 As we have seen on the mainboard, there seems to be a switch chipset. You usually connect to a switch with a serial console, at least for the initial configuration.
-On https://docs.freebsd.org/en/books/handbook/serialcomms/ you can find out: Call-out ports are named /dev/cuauN on FreeBSD. it also says that here are at least two utilities in the base-system of FreeBSD that can be used to work through a serial connection: cu and tip. we will use cu.
+On https://docs.freebsd.org/en/books/handbook/serialcomms/ you can find out: Call-out ports are named /dev/cuauN on FreeBSD. it also says that here are at least two utilities in the base-system of FreeBSD that can be used to work through a serial connection: cu and tip. We will use cu.
 
 ```cu -l /dev/cuau1 -s 19200```
 
 connects us with the switch.
+What the switch can do, i have put here for you
+https://github.com/bmn-m/Stormshield-SN300/blob/main/SwitchMenu
+We skip all the configuration options and display the switchports.
+
+```>port state```
+shows 
+```
+Port  State     
+----  --------  
+1     Disabled   
+2     Disabled  
+3     Disabled 
+4     Disabled  
+5     Disabled   
+6     Disabled   
+7     Disabled   
+8     Disabled  
+9     Disabled
+```
+As you probably already guessed correctly, the switchports should be enabled.
+
+```>port state 1-9 enable```
+does the trick.
