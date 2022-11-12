@@ -14,7 +14,7 @@ Without further ado, I broke the warranty seal to take a look at the device from
 
 ![IMG_3543](https://user-images.githubusercontent.com/18091782/201493442-4b952d6a-2f44-49d7-8fc4-1d4736ba7d8b.JPG)
 
-Hidden behind the silver cooling fins on the left, the VIA NANO U3500 @ 1000MHz (1 core, 1 thread) CPU. Behind the black cooling fins in the center of the picture, probably the GPU. Behind the black fins on the right, the switch controller and just above it the gigabit ethernet controller that connects the board to the switch. Above, in beautiful green, the RAM with 2GB and below left in blue: The gigantic 2GB flash memory. 
+Hidden behind the silver cooling fins on the left, the VIA NANO U3500 @ 1000MHz (1 core, 1 thread) CPU. Behind the black cooling fins in the center of the picture, probably the VIA VX900. Behind the black fins on the right, the switch controller and just above it the gigabit ethernet controller that connects the board to the switch. Above, in beautiful green, the RAM with 2GB and below left in blue: The gigantic 2GB flash memory. 
 2GB are unfortunately too small for the smallest OPNSense image. It needs at least 3GB.
 No less important and probably therefore with two green ok stickers, the AMI BIOS from 2014 in version 02.69. Nice. 
 
