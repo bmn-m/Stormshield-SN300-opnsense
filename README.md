@@ -222,7 +222,17 @@ In the endpoint you enter the public key you have just created.
 Some firewlling.
 ![wan](https://user-images.githubusercontent.com/18091782/201521946-a62cb09e-d56f-4d12-a17a-ebab9ebd2b50.png)
 ![wgg](https://user-images.githubusercontent.com/18091782/201521950-55700784-c66a-4a06-b225-dc04199a1170.png)
-And some NAT settings.
-![nat](https://user-images.githubusercontent.com/18091782/201521954-0a596367-8cf3-464d-8708-70ce97fdab25.png)
+
+Create the Wireguard config on your roadwarrior. Fill in the private key you just created and the public key from your OPNSense local instance.
+```
+[Interface]
+Address = 172.17.17.2/32
+PrivateKey = xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+[Peer]
+PublicKey = yyyyyyyyyyyyyyyyyyyyyyyyyyyyy
+AllowedIPs = 172.17.17.0/24
+Endpoint = 12.12.12.1:44666
+```
 
 
