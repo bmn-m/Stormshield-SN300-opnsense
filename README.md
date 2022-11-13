@@ -202,3 +202,15 @@ After the login on the web interface we find the following picture in the menu u
 ## Wireguard
 I would like to determine two performance values later. One is the classic routing and packet filter (firewalling) performance and the other is the data throughput when the data is encrypted and sent through a wireguard tunnel. The wireguard management package can be installed via System -> Firmware -> Plugins -> os-wireguard. Since 29.10.2022, the wireguard module is officially available via FreeBSD ports and thus again official part of the FreeBSD kernel, which was not the case for over a year now. https://reviews.freebsd.org/rG4c6c8f51fdb7e2b3870ec5a6fa5dce51ad3b25a5
 
+The VPN configuration will be a classic site to roadwarrior architecture.   
+After installing the wireguard package, we can activate wireguard in the menu under VPN -> Wireguard and add a local instance and an endpoint.
+For the endpoint we need to create a private public key pair. For the local instance this happens automatically.
+Assuming you have already installed the wireguard package on a client with
+```
+sudo apt install wireguard
+```
+you can generate the key pair with 
+
+```
+wg genkey | tee privatekey | wg pubkey > publickey
+```
