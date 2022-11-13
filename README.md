@@ -199,3 +199,6 @@ After the login on the web interface we find the following picture in the menu u
 
 ![webgui](https://user-images.githubusercontent.com/18091782/201519306-0bc24536-3d8f-4dcb-b85d-7450a62493a2.png)
 
+## Wireguard
+I would like to determine two performance values later. One is the classic routing and packet filter (firewalling) performance and the other is the data throughput when the data is encrypted and sent through a wireguard tunnel. The wireguard management package can be installed via System -> Firmware -> Plugins -> os-wireguard. Since 29.10.2022, the wireguard module is officially available via FreeBSD ports and thus again official part of the FreeBSD kernel, which was not the case for over a year now. https://reviews.freebsd.org/rG4c6c8f51fdb7e2b3870ec5a6fa5dce51ad3b25a5
+
