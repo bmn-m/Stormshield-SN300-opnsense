@@ -254,6 +254,58 @@ peer: yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
   allowed ips: 172.17.17.0/24
   latest handshake: 18 seconds ago
   transfer: 348 B received, 436 B sent
-´´´
+``
 we get the interface status.
 Admittedly quite a bit of work for a small test.
+
+## Performance-Test
+The first performance test refers to the pure routing and packet filter throughput.
+Server <---WAN---> Stormshield <---LAN---> Client
+Server on the WAN interface.
+The second measurement includes the wireguard tunnel.
+Client <---Wireguard---> Stormshield <---LAN---> Server
+Roadwarrior calls a server on the site network.
+As a test tool I use iPerf3. iPerf3 is a tool to actively measure the maximum achievable bandwidth in IP networks. So we need an iPerf3 server and an iPerf3 client.
+
+Only rouing and paketfiltering.
+```
+Server listening on 5201
+-----------------------------------------------------------
+Accepted connection from 10.1.0.219, port 39284
+[  5] local 12.12.12.2 port 5201 connected to 10.1.0.219 port 39292
+[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
+[  5]   0.00-1.00   sec   107 MBytes   895 Mbits/sec    0    304 KBytes       
+[  5]   1.00-2.00   sec   109 MBytes   917 Mbits/sec    0    304 KBytes       
+[  5]   2.00-3.00   sec   110 MBytes   923 Mbits/sec    0    304 KBytes       
+[  5]   3.00-4.00   sec   110 MBytes   923 Mbits/sec    0    304 KBytes       
+[  5]   4.00-5.00   sec   109 MBytes   918 Mbits/sec    0    304 KBytes       
+[  5]   5.00-6.00   sec   110 MBytes   923 Mbits/sec    0    304 KBytes       
+[  5]   6.00-7.00   sec   109 MBytes   919 Mbits/sec    0    317 KBytes       
+[  5]   7.00-8.00   sec   110 MBytes   922 Mbits/sec    0    317 KBytes       
+[  5]   8.00-9.00   sec   110 MBytes   921 Mbits/sec    0    317 KBytes       
+[  5]   9.00-10.00  sec   110 MBytes   924 Mbits/sec    0    317 KBytes       
+[  5]  10.00-10.04  sec  3.98 MBytes   878 Mbits/sec    0    317 KBytes       
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.04  sec  1.07 GBytes   918 Mbits/sec    0             sender
+-----------------------------------------------------------
+Server listening on 5201
+-----------------------------------------------------------
+Accepted connection from 10.1.0.219, port 57498
+[  5] local 12.12.12.2 port 5201 connected to 10.1.0.219 port 57500
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-1.00   sec  82.8 MBytes   695 Mbits/sec                  
+[  5]   1.00-2.00   sec  87.6 MBytes   735 Mbits/sec                  
+[  5]   2.00-3.00   sec  86.8 MBytes   728 Mbits/sec                  
+[  5]   3.00-4.00   sec  86.5 MBytes   725 Mbits/sec                  
+[  5]   4.00-5.00   sec  86.6 MBytes   727 Mbits/sec                  
+[  5]   5.00-6.00   sec  86.3 MBytes   724 Mbits/sec                  
+[  5]   6.00-7.00   sec  86.9 MBytes   729 Mbits/sec                  
+[  5]   7.00-8.00   sec  86.7 MBytes   727 Mbits/sec                  
+[  5]   8.00-9.00   sec  86.8 MBytes   728 Mbits/sec                  
+[  5]   9.00-10.00  sec  87.0 MBytes   730 Mbits/sec                  
+[  5]  10.00-10.05  sec  4.08 MBytes   728 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-10.05  sec   868 MBytes   725 Mbits/sec                  receiver
+```
