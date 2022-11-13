@@ -352,6 +352,8 @@ Accepted connection from 172.17.17.2, port 37058
 [ ID] Interval           Transfer     Bitrate         Retr
 [  5]   0.00-10.08  sec  93.6 MBytes  77.9 Mbits/sec  132             sender
 ```
+
+![put](https://user-images.githubusercontent.com/18091782/201536883-941ea6f8-7e31-4b58-9d01-e8ec1a3780f9.png)
 These values are rather poor and do not even come close to the IPSec values promised by the manufacturer. Their advertising: IPSec throughput - AES256/SHA2 350 Mbps.
 Let's take a quick look at system performance during data transmission with wireguard:
 ```
