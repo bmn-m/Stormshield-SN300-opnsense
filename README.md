@@ -194,3 +194,8 @@ em0_vlan6        00:00:00:00:00:00 VLAN tag 6, parent interface em0
 em0_vlan7        00:00:00:00:00:00 VLAN tag 7, parent interface em0
 em0_vlan8        00:00:00:00:00:00 VLAN tag 8, parent interface em0
 ```
+Now we assign the LAN and the WAN interface, as well as an IP address, so that we can log on to the web interface. For login via web interface a single assignment would be sufficient, but while we are at it...
+After the login on the web interface we find the following picture in the menu under Interfaces -> Other Types -> VLAN:
+
+![webgui](https://user-images.githubusercontent.com/18091782/201519306-0bc24536-3d8f-4dcb-b85d-7450a62493a2.png)
+
