@@ -214,8 +214,15 @@ you can generate the key pair with
 ```
 wg genkey | tee privatekey | wg pubkey > publickey
 ```
-![lok](https://user-images.githubusercontent.com/18091782/201521480-4cda0b3c-f8d4-42e2-a221-56a324a4d26e.png)
-![end](https://user-images.githubusercontent.com/18091782/201521515-e0e9d052-610b-4080-9a58-54cb3f5ede60.png)
+Make the following settings and think of a private network address that you have to enter. The endpoint has to be in the subnet of the local interface and has a 32 subnet mask, i.e. single client.
 
+![lok](https://user-images.githubusercontent.com/18091782/201521480-4cda0b3c-f8d4-42e2-a221-56a324a4d26e.png)
+In the endpoint you enter the public key you have just created.
+![end](https://user-images.githubusercontent.com/18091782/201521515-e0e9d052-610b-4080-9a58-54cb3f5ede60.png)
+Some firewlling.
+![wan](https://user-images.githubusercontent.com/18091782/201521946-a62cb09e-d56f-4d12-a17a-ebab9ebd2b50.png)
+![wgg](https://user-images.githubusercontent.com/18091782/201521950-55700784-c66a-4a06-b225-dc04199a1170.png)
+And some NAT settings.
+![nat](https://user-images.githubusercontent.com/18091782/201521954-0a596367-8cf3-464d-8708-70ce97fdab25.png)
 
 
