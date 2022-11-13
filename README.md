@@ -225,14 +225,35 @@ Some firewlling.
 
 Create the Wireguard config on your roadwarrior. Fill in the private key you just created and the public key from your OPNSense local instance.
 ```
+#wg5.conf
 [Interface]
 Address = 172.17.17.2/32
-PrivateKey = xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+PrivateKey = aaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
 [Peer]
 PublicKey = yyyyyyyyyyyyyyyyyyyyyyyyyyyyy
 AllowedIPs = 172.17.17.0/24
 Endpoint = 12.12.12.1:44666
 ```
+With
+```
+sudo wg-quick@wg5.service
+```
+we connect our roadwarrior and with
 
+```
+sudo wg
 
+interface: wg5
+  public key: bbbbbbbbbbbbbbbbbbbbbbbbbbbb
+  private key: (hidden)
+  listening port: 47569
+
+peer: yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
+  endpoint: 12.12.12.1:44666
+  allowed ips: 172.17.17.0/24
+  latest handshake: 18 seconds ago
+  transfer: 348 B received, 436 B sent
+´´´
+we get the interface status.
+Admittedly quite a bit of work for a small test.
