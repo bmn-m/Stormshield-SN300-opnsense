@@ -368,4 +368,4 @@ Mem: 64M Active, 64M Inact, 185M Wired, 89M Buf, 3615M Free
 The high CPU load could of course be explained by the fact that the CPU has much more to do during encrypting and decrypting wireguard packages, than with IPSec with AES256/SHA2. The VIA NANO U3500 CPU has an built in AES encryption and Secure Hash Algorithm engine. IPSec benefits from both engines and wireguard does not. It looks like I still have to test IPSec on the OPNSense. 
 
 ## Preliminary Conclusion
-The Stormshield SN-300 is still a good enough piece of hardware for SOHO use. Whether I will use it in my network, I do not know yet. IPSec test follows with certainty. Promised.
+The Stormshield SN-300 is still a good enough piece of hardware for SOHO use. Whether I will use it in my network, I do not know yet. IPSec test follows with certainty. Promised. 😉
