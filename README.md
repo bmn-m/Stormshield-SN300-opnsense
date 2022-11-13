@@ -5,7 +5,7 @@ Stormshield SN300 OPNSense
 
 A nice colleague of mine gave me a Stormshield SN300 a few days ago. 
 Since I am a big OPNSense fan, I wanted to install the same on the Stormshield. 
-Here and in some YouTube videos, I summarize briefly what was necessary and whether it was worth it. 
+Here I summarize briefly what was necessary and whether it was worth it. 
 It should also be mentioned that Stormshield is a Subsidiary of Airbus Defense & Space Cyber Programmes.
 
 ## Departure
@@ -219,11 +219,11 @@ Make the following settings and think of a private network address that you have
 ![lok](https://user-images.githubusercontent.com/18091782/201521480-4cda0b3c-f8d4-42e2-a221-56a324a4d26e.png)
 In the endpoint you enter the public key you have just created.
 ![end](https://user-images.githubusercontent.com/18091782/201521515-e0e9d052-610b-4080-9a58-54cb3f5ede60.png)
-Some firewlling.
+Some firewalling.
 ![wan](https://user-images.githubusercontent.com/18091782/201521946-a62cb09e-d56f-4d12-a17a-ebab9ebd2b50.png)
 ![wgg](https://user-images.githubusercontent.com/18091782/201521950-55700784-c66a-4a06-b225-dc04199a1170.png)
 
-Create the Wireguard config on your roadwarrior. Fill in the private key you just created and the public key from your OPNSense local instance.
+Create the wireguard config on your roadwarrior. Fill in the private key you just created and the public key from your OPNSense local instance.
 ```
 #wg5.conf
 [Interface]
@@ -260,15 +260,14 @@ Admittedly quite a bit of work for a small test.
 
 ## Performance-Test
 The first performance test refers to the pure routing and packet filter throughput.
-Server <---WAN---> Stormshield <---LAN---> Client
-Server on the WAN interface.
+```Server <---WAN---> Stormshield <---LAN---> Client```
+Server on the WAN interface, client on the LAN interface.
 The second measurement includes the wireguard tunnel.
-Client <---Wireguard---> Stormshield <---LAN---> Server
-Roadwarrior calls a server on the site network.
+```Client <---Wireguard---> Stormshield <---LAN---> Server```
+Roadwarrior calls a server on the LAN network.
 As a test tool I use iPerf3. iPerf3 is a tool to actively measure the maximum achievable bandwidth in IP networks. So we need an iPerf3 server and an iPerf3 client.
 
-Only rouing and paketfiltering.
-
+Only rouing and paketfiltering:
 ```
 Server listening on 5201
 -----------------------------------------------------------
@@ -310,7 +309,7 @@ Accepted connection from 10.1.0.219, port 57498
 [ ID] Interval           Transfer     Bitrate
 [  5]   0.00-10.05  sec   868 MBytes   725 Mbits/sec                  receiver
 ```
-This is ok and matches the manufracters values quiet nicely. Their advertising promise: Firewall throughput (1518 byte UDP) 800 Mbps
+This looks ok and matches the manufracters values quiet nicely. Their advertising promise: Firewall throughput 800 Mbps.
 The values changed significantly for wireguard, routing and packet filtering:
 ```
 Server listening on 5201
@@ -353,10 +352,8 @@ Accepted connection from 172.17.17.2, port 37058
 [ ID] Interval           Transfer     Bitrate         Retr
 [  5]   0.00-10.08  sec  93.6 MBytes  77.9 Mbits/sec  132             sender
 ```
-These values are rather poor and do not even come close to the IPSEC values promised by the manufacturer. Their advertising: IPSec throughput - AES256/SHA2 350 Mbps
-
+These values are rather poor and do not even come close to the IPSec values promised by the manufacturer. Their advertising: IPSec throughput - AES256/SHA2 350 Mbps.
 Let's take a quick look at system performance during data transmission with wireguard:
-
 ```
 root@OPNsense:~ # top -b -n 1
 last pid: 36217;  load averages:  1.59,  1.35,  1.27  up 0+02:47:21    13:44:54
@@ -368,7 +365,7 @@ Mem: 64M Active, 64M Inact, 185M Wired, 89M Buf, 3615M Free
 43379 root         10  52    0   710M    20M uwait    1:33  76.12% wireguard-go
 
 ```
-The high CPU load could of course be explained by the fact that the CPU has much more to do during encryption and decryption than with IPSec with AES256/SHA2. The VIA NANO U3500 CPU has an AES encryption engine and a Secure Hash Algorithm engine built in. IPSec benefits from both engines and wireguard does not. It looks like I still have to test IPSec on the OPNSense. 
+The high CPU load could of course be explained by the fact that the CPU has much more to do during encrypting and decrypting wireguard packages, than with IPSec with AES256/SHA2. The VIA NANO U3500 CPU has an built in AES encryption and Secure Hash Algorithm engine. IPSec benefits from both engines and wireguard does not. It looks like I still have to test IPSec on the OPNSense. 
 
 ## Preliminary Conclusion
 The Stormshield SN-300 is still a good enough piece of hardware for SOHO use. Whether I will use it in my network, I do not know yet. IPSec test follows with certainty. Promised.
