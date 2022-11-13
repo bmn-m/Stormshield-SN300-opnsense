@@ -310,3 +310,65 @@ Accepted connection from 10.1.0.219, port 57498
 [ ID] Interval           Transfer     Bitrate
 [  5]   0.00-10.05  sec   868 MBytes   725 Mbits/sec                  receiver
 ```
+This is ok and matches the manufracters values quiet nicely. Their advertising promise: Firewall throughput (1518 byte UDP) 800 Mbps
+The values changed significantly for wireguard, routing and packet filtering:
+```
+Server listening on 5201
+-----------------------------------------------------------
+Accepted connection from 172.17.17.2, port 40184
+[  5] local 10.1.0.219 port 5201 connected to 172.17.17.2 port 40196
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-1.00   sec  3.36 MBytes  28.2 Mbits/sec                  
+[  5]   1.00-2.00   sec  3.72 MBytes  31.2 Mbits/sec                  
+[  5]   2.00-3.00   sec  4.64 MBytes  38.9 Mbits/sec                  
+[  5]   3.00-4.00   sec  2.84 MBytes  23.8 Mbits/sec                  
+[  5]   4.00-5.00   sec  3.13 MBytes  26.3 Mbits/sec                  
+[  5]   5.00-6.00   sec  3.33 MBytes  27.9 Mbits/sec                  
+[  5]   6.00-7.00   sec  3.79 MBytes  31.8 Mbits/sec                  
+[  5]   7.00-8.00   sec  5.54 MBytes  46.5 Mbits/sec                  
+[  5]   8.00-9.00   sec  2.98 MBytes  25.0 Mbits/sec                  
+[  5]   9.00-10.00  sec  3.52 MBytes  29.5 Mbits/sec                  
+[  5]  10.00-10.07  sec   285 KBytes  35.7 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-10.07  sec  37.1 MBytes  30.9 Mbits/sec                  receiver
+-----------------------------------------------------------
+Server listening on 5201
+-----------------------------------------------------------
+Accepted connection from 172.17.17.2, port 37058
+[  5] local 10.1.0.219 port 5201 connected to 172.17.17.2 port 37072
+[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
+[  5]   0.00-1.00   sec  7.77 MBytes  65.2 Mbits/sec   12   61.5 KBytes       
+[  5]   1.00-2.00   sec  11.2 MBytes  93.6 Mbits/sec   22   84.2 KBytes       
+[  5]   2.00-3.00   sec  10.7 MBytes  89.5 Mbits/sec   10   80.2 KBytes       
+[  5]   3.00-4.00   sec  10.1 MBytes  84.4 Mbits/sec   16   81.5 KBytes       
+[  5]   4.00-5.00   sec  11.2 MBytes  93.6 Mbits/sec   21   77.5 KBytes       
+[  5]   5.00-6.00   sec  11.1 MBytes  93.1 Mbits/sec   17   58.8 KBytes       
+[  5]   6.00-7.00   sec  11.1 MBytes  93.1 Mbits/sec   22   60.1 KBytes       
+[  5]   7.00-8.00   sec  10.9 MBytes  91.1 Mbits/sec   12   88.2 KBytes       
+[  5]   8.00-9.00   sec  5.89 MBytes  49.4 Mbits/sec    0    128 KBytes       
+[  5]   9.00-10.00  sec  3.68 MBytes  30.9 Mbits/sec    0    147 KBytes       
+[  5]  10.00-10.08  sec   188 KBytes  19.7 Mbits/sec    0    148 KBytes       
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.08  sec  93.6 MBytes  77.9 Mbits/sec  132             sender
+```
+These values are rather poor and do not even come close to the IPSEC values promised by the manufacturer. Their advertising: IPSec throughput - AES256/SHA2 350 Mbps
+
+Let's take a quick look at system performance during data transmission with wireguard:
+
+```
+root@OPNsense:~ # top -b -n 1
+last pid: 36217;  load averages:  1.59,  1.35,  1.27  up 0+02:47:21    13:44:54
+37 processes:  1 running, 36 sleeping
+CPU:  4.9% user,  0.0% nice,  3.9% system,  0.0% interrupt, 91.2% idle
+Mem: 64M Active, 64M Inact, 185M Wired, 89M Buf, 3615M Free
+
+  PID USERNAME    THR PRI NICE   SIZE    RES STATE    TIME    WCPU COMMAND
+43379 root         10  52    0   710M    20M uwait    1:33  76.12% wireguard-go
+
+```
+The high CPU load could of course be explained by the fact that the CPU has much more to do during encryption and decryption than with IPSec with AES256/SHA2. The VIA NANO U3500 CPU has an AES encryption engine and a Secure Hash Algorithm engine built in. IPSec benefits from both engines and wireguard does not. It looks like I still have to test IPSec on the OPNSense. 
+
+## Preliminary Conclusion
+The Stormshield SN-300 is still a good enough piece of hardware for SOHO use. Whether I will use it in my network, I do not know yet. IPSec test follows with certainty. Promised.
