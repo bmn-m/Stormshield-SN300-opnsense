@@ -130,3 +130,66 @@ VID   VLAN Name                         Ports
 VLAN forbidden table is empty
 ```
 that each port is already assigned an untagged VLAN except for port nine. Our internal port is a VLAN trunk. Perfect, on the switch we are done for now.  
+To exit the switch console you have to enter the following key combination.
+
+```~.```
+
+## Networking
+In the next step we have to link the switchports to the OPNSense via the VLANS. This logical link is only an example, but it gives us the greatest possible flexibility.
+
+```
+----------------------------------------------
+|      Hello, this is OPNsense 22.7          |         @@@@@@@@@@@@@@@
+|                                            |        @@@@         @@@@
+| Website:	https://opnsense.org/            |         @@@\\\   ///@@@
+| Handbook:	https://docs.opnsense.org/       |       ))))))))   ((((((((
+| Forums:	https://forum.opnsense.org/        |         @@@///   \\\@@@
+| Code:		https://github.com/opnsense        |        @@@@         @@@@
+| Twitter:	https://twitter.com/opnsense     |         @@@@@@@@@@@@@@@
+----------------------------------------------
+
+*** OPNsense.localdomain: OPNsense 22.7.7_1 (amd64/OpenSSL) ***
+
+ LAN (em0) -> v4: 192.168.1.1/24
+
+ HTTPS: SHA256 XX XX XX
+ SSH:   SHA256 xxxxxxxx (ECDSA)
+ SSH:   SHA256 xxxxxxxx (ED25519)
+ SSH:   SHA256 xxxxxxxx (RSA)
+
+  0) Logout                              7) Ping host
+  1) Assign interfaces                   8) Shell
+  2) Set interface IP address            9) pfTop
+  3) Reset the root password            10) Firewall log
+  4) Reset to factory defaults          11) Reload all services
+  5) Power off system                   12) Update from console
+  6) Reboot system                      13) Restore a backup
+
+Enter an option: 1
+
+Do you want to configure LAGGs now? [y/N]: n
+Do you want to configure VLANs now? [y/N]: y
+
+WARNING: all existing VLANs will be cleared if you proceed!
+
+Do you want to proceed? [y/N]: y
+
+Valid interfaces are:
+
+em0              00:0d:b4:aa:aa:aa Intel(R) Gigabit CT 82574L
+
+```
+
+Menu-driven, we now assign eight VLAN interfaces to interface em0, the parent interface. The result should look like this: 
+
+```
+em0              00:0d:b4:aa:aa:aa Intel(R) Gigabit CT 82574L
+em0_vlan1        00:00:00:00:00:00 VLAN tag 1, parent interface em0
+em0_vlan2        00:00:00:00:00:00 VLAN tag 2, parent interface em0
+em0_vlan3        00:00:00:00:00:00 VLAN tag 3, parent interface em0
+em0_vlan4        00:00:00:00:00:00 VLAN tag 4, parent interface em0
+em0_vlan5        00:00:00:00:00:00 VLAN tag 5, parent interface em0
+em0_vlan6        00:00:00:00:00:00 VLAN tag 6, parent interface em0
+em0_vlan7        00:00:00:00:00:00 VLAN tag 7, parent interface em0
+em0_vlan8        00:00:00:00:00:00 VLAN tag 8, parent interface em0
+```
