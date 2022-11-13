@@ -214,6 +214,8 @@ you can generate the key pair with
 ```
 wg genkey | tee privatekey | wg pubkey > publickey
 ```
+![lok](https://user-images.githubusercontent.com/18091782/201521480-4cda0b3c-f8d4-42e2-a221-56a324a4d26e.png)
+![end](https://user-images.githubusercontent.com/18091782/201521515-e0e9d052-610b-4080-9a58-54cb3f5ede60.png)
 
 
 
