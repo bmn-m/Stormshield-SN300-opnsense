@@ -254,7 +254,7 @@ peer: yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
   allowed ips: 172.17.17.0/24
   latest handshake: 18 seconds ago
   transfer: 348 B received, 436 B sent
-``
+``` 
 we get the interface status.
 Admittedly quite a bit of work for a small test.
 
